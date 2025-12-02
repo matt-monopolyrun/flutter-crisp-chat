@@ -159,8 +159,10 @@ public class SwiftFlutterCrispChatPlugin: NSObject, FlutterPlugin, UIApplication
     /// Handles registration of device token for push notifications.
     public func application(_ application: UIApplication,
                             didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("Device Token")
-        print(deviceToken)
+        let tokenString = deviceToken.map { String(format: "%02x", $0) }.joined()
+
+        print("📱 APNs Device Token: \(tokenString)")
+        
         CrispSDK.setDeviceToken(deviceToken)
     }
 
